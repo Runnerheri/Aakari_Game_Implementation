@@ -191,16 +191,30 @@ public class ModelImpl implements Model {
         }
 
         int count = 0;
-        if(lampBoard[r+1][c] == 1){
+        if (r + 1 >= currentPuzzle.getHeight()) {
+            count +=0;
+        }
+        else if (lampBoard[r + 1][c] == 1) {
+        count += 1;
+        }
+
+        if(r-1 <0){
+            count +=0;
+        }
+        else if(lampBoard[r-1][c] ==1){
             count +=1;
         }
-        if(lampBoard[r-1][c] ==1){
+
+        if (c + 1 >= currentPuzzle.getWidth()){
+        count += 0;
+         }
+         else  if (lampBoard[r][c + 1] == 1) {
             count +=1;
         }
-        if(lampBoard[r][c+1] ==1){
-            count +=1;
+        if(c-1 < 0){
+            count += 0;
         }
-        if(lampBoard[r][c-1] == 1){
+        else if(lampBoard[r][c-1] == 1){
             count +=1;
         }
         int clue = currentPuzzle.getClue(r,c);
