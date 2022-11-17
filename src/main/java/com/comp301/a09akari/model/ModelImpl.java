@@ -16,7 +16,7 @@ public class ModelImpl implements Model {
     }
 
     public void addLamp(int r, int c){
-        if(r<0 || r> library.getPuzzle(activePuzzle).getWidth() || c<0 || c>library.getPuzzle(activePuzzle).getHeight()){
+        if(r<0 || r>= library.getPuzzle(activePuzzle).getWidth() || c<0 || c>=library.getPuzzle(activePuzzle).getHeight()){
             throw new IndexOutOfBoundsException();
         }
         if(library.getPuzzle(activePuzzle).getCellType(r,c) != CellType.CORRIDOR){
@@ -27,7 +27,7 @@ public class ModelImpl implements Model {
     }
 
     public void removeLamp(int r, int c){
-        if(r<0 || r> library.getPuzzle(activePuzzle).getWidth() || c<0 || c>library.getPuzzle(activePuzzle).getHeight()){
+        if(r<0 || r>= library.getPuzzle(activePuzzle).getWidth() || c<0 || c>=library.getPuzzle(activePuzzle).getHeight()){
             throw new IndexOutOfBoundsException();
         }
         if(library.getPuzzle(activePuzzle).getCellType(r,c) != CellType.CORRIDOR){
