@@ -182,7 +182,37 @@ public class ModelImpl implements Model {
 
 
     public boolean isClueSatisfied(int r, int c){
-        return false;
+        Puzzle currentPuzzle = library.getPuzzle(activePuzzle);
+        if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
+            throw new IndexOutOfBoundsException();
+        }
+        if(currentPuzzle.getCellType(r,c) != CellType.CLUE){
+            throw new IllegalArgumentException();
+        }
+
+        int count = 0;
+        if(lampBoard[r+1][c] == 1){
+            count +=1;
+        }
+        if(lampBoard[r-1][c] ==1){
+            count +=1;
+        }
+        if(lampBoard[r][c+1] ==1){
+            count +=1;
+        }
+        if(lampBoard[r][c-1] == 1){
+            count +=1;
+        }
+        int clue = currentPuzzle.getClue(r,c);
+
+        if(clue == count){
+           return true;
+        }
+        else{
+            return false;
+        }
+
+
     }
 
     public void addObserver(ModelObserver observer){
