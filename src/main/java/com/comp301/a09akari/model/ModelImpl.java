@@ -122,7 +122,7 @@ public class ModelImpl implements Model {
         boolean columnabove = false;
         boolean columnbelow = false;
         //Check to the right
-        for(int i=c; i<lampBoard[r].length; i++){
+        for(int i=c+1; i<lampBoard[r].length; i++){
             if(lampBoard[r][i] == 1){
                 return false;
             }
@@ -130,7 +130,7 @@ public class ModelImpl implements Model {
                 rowtoright = true;
             }
         }
-        for(int i=c; i>=0; i--){
+        for(int i=c-1; i>=0; i--){
             if(lampBoard[r][i] ==1){
                 return false;
             }
@@ -138,7 +138,7 @@ public class ModelImpl implements Model {
                 rowtoleft = true;
             }
         }
-        for(int j=r; j<lampBoard.length; j++){
+        for(int j=r+1; j<lampBoard.length; j++){
             if(lampBoard[j][c] == 1){
                 return false;
             }
@@ -146,7 +146,7 @@ public class ModelImpl implements Model {
                 columnabove = true;
             }
         }
-        for(int j=r; j>=0; j--){
+        for(int j=r-1; j>=0; j--){
             if(lampBoard[j][c] == 1){
                 return false;
             }
