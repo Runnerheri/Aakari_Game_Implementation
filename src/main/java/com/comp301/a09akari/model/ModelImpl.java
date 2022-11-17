@@ -156,7 +156,7 @@ public class ModelImpl implements Model {
     }
 
     public boolean isLampIllegal(int r, int c){
-
+        return false;
     }
 
     public Puzzle getActivePuzzle(){
@@ -181,12 +181,12 @@ public class ModelImpl implements Model {
     }
 
     public boolean isSolved(){
-
+        return false;
     }
 
 
     public boolean isClueSatisfied(int r, int c){
-
+        return false;
     }
 
     public void addObserver(ModelObserver observer){
