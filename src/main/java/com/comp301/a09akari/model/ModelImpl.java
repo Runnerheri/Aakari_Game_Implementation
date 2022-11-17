@@ -125,9 +125,9 @@ public class ModelImpl implements Model {
         for(int i=c+1; i<lampBoard[r].length; i++){
             if(lampBoard[r][i] == 1){
                 return true;
-            }
-            if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-                return false;
+           // }
+           // if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
+             //   return false;
                // rowtoright = true;
                 //break;
             }
@@ -136,31 +136,31 @@ public class ModelImpl implements Model {
             if(lampBoard[r][i] ==1){
                 return true;
             }
-            if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-                return false;
+           // if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
+             //   return false;
                 //rowtoleft = true;
                // break;
-            }
+           // }
         }
         for(int j=r+1; j<lampBoard.length; j++){
             if(lampBoard[j][c] == 1){
                 return true;
             }
-            if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-                return false;
+           // if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
+              //  return false;
                 //columnabove = true;
                 //break;
-            }
+          //  }
         }
         for(int j=r-1; j>=0; j--){
             if(lampBoard[j][c] == 1){
                 return true;
             }
-            if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-                return false;
+           // if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
+             //   return false;
                // columnbelow = true;
                 //break;
-            }
+            //}
         }
         //if(rowtoright == true && rowtoleft == true && columnabove == true && columnbelow == true){
          //   return false;
