@@ -15,7 +15,7 @@ public class ModelImpl implements Model {
             throw new IllegalArgumentException();
         }
         this.library = library;
-        lampBoard = new int[library.getPuzzle(activePuzzle).getWidth()][library.getPuzzle(activePuzzle).getHeight()];
+        lampBoard = new int[library.getPuzzle(activePuzzle).getHeight()][library.getPuzzle(activePuzzle).getWidth()];
         observers = new ArrayList<>();
 
     }
@@ -215,7 +215,7 @@ public class ModelImpl implements Model {
             throw new IndexOutOfBoundsException();
         }
         activePuzzle = index;
-        lampBoard = new int[library.getPuzzle(index).getWidth()][library.getPuzzle(index).getHeight()];
+        lampBoard = new int[library.getPuzzle(index).getHeight()][library.getPuzzle(index).getWidth()];
 
     }
 
