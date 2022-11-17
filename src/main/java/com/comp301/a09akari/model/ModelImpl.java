@@ -182,7 +182,11 @@ public class ModelImpl implements Model {
     }
 
     public void resetPuzzle(){
-
+        for(int i =0; i<lampBoard[0].length; i++){
+            for(int j=0; j<lampBoard.length; j++){
+                lampBoard[i][j] =0;
+            }
+        }
     }
 
     public boolean isSolved(){
