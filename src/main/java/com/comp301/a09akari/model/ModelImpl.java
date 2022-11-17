@@ -168,7 +168,7 @@ public class ModelImpl implements Model {
     }
 
     public void setActivePuzzleIndex(int index){
-        if(index <0 || index >library.size()){
+        if(index <0 || index >= library.size()){
             throw new IndexOutOfBoundsException();
         }
         activePuzzle = index;
