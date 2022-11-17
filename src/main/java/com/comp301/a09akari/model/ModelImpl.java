@@ -201,8 +201,8 @@ public class ModelImpl implements Model {
             //check if it is not lit OR it is an illegal lamp, return false
         //return true at end as default
 
-        for(int i=0; i<currentpuzzle.getWidth(); i++){
-            for(int j=0; j<currentpuzzle.getHeight(); j++){
+        for(int i=0; i<lampBoard.length; i++){
+            for (int j = 0; j < lampBoard[0].length; j++) {
                 if(currentpuzzle.getCellType(i, j) == CellType.CLUE){
                     if(isClueSatisfied(i,j) == false) return false;
                 }
