@@ -116,13 +116,18 @@ public class ModelImpl implements Model {
         if(isLamp(r,c) == false || currentPuzzle.getCellType(r,c) != CellType.CORRIDOR){
             throw new IllegalArgumentException();
         }
+
+        boolean rowtoright = false;
+        boolean rowtoleft = false;
+        boolean columnabove = false;
+        boolean columnbelow = false;
         //Check to the right
         for(int i=c; i<lampBoard[r].length; i++){
             if(lampBoard[r][i] == 1){
                 return false;
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-                return true;
+                rowtoright = true;
             }
         }
         for(int i=c; i>=0; i--){
@@ -130,7 +135,7 @@ public class ModelImpl implements Model {
                 return false;
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-                return true;
+                rowtoleft = true;
             }
         }
         for(int j=r; j<lampBoard.length; j++){
@@ -138,7 +143,7 @@ public class ModelImpl implements Model {
                 return false;
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-                return true;
+                columnabove = true;
             }
         }
         for(int j=r; j>=0; j--){
@@ -146,8 +151,11 @@ public class ModelImpl implements Model {
                 return false;
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-                return true;
+                columnbelow = true;
             }
+        }
+        if(rowtoright == true && rowtoright == true && columnabove == true && columnbelow == true){
+            return true;
         }
         return false;
     }
