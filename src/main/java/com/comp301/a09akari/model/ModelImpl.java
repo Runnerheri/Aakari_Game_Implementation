@@ -160,9 +160,7 @@ public class ModelImpl implements Model {
         if(rowtoright == true && rowtoleft == true && columnabove == true && columnbelow == true){
             return false;
         }
-        else {
-            return true;
-        }
+        return false;
     }
 
     public Puzzle getActivePuzzle(){
