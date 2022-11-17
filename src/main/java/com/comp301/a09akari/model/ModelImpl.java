@@ -173,7 +173,7 @@ public class ModelImpl implements Model {
             throw new IndexOutOfBoundsException();
         }
         activePuzzle = index;
-        lampBoard = new int[library.getPuzzle(activePuzzle).getWidth()][library.getPuzzle(getActivePuzzleIndex()).getHeight()];
+        lampBoard = new int[library.getPuzzle(index).getWidth()][library.getPuzzle(index).getHeight()];
 
     }
 
