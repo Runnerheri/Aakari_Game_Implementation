@@ -193,6 +193,7 @@ public class ModelImpl implements Model {
         }
 
     public boolean isSolved(){
+        Puzzle currentpuzzle = library.getPuzzle(activePuzzle);
         //double for loop to loop through each cell
         //check if cell type is clue
             //check if clue is satisfied, it not return false
@@ -200,7 +201,18 @@ public class ModelImpl implements Model {
             //check if it is not lit OR it is an illegal lamp, return false
         //return true at end as default
 
-        return false;
+        for(int i=0; i<currentpuzzle.getWidth(); i++){
+            for(int j=0; j<currentpuzzle.getHeight(); j++){
+                if(currentpuzzle.getCellType(i, j) == CellType.CLUE){
+                    if(isClueSatisfied(i,j) == false) return false;
+                }
+                if(currentpuzzle.getCellType(i,j) == CellType.CORRIDOR){
+                    if(isLit(i,j) == false) return false;
+                    if(isLampIllegal(i,j)) return false;
+                }
+            }
+        }
+        return true;
     }
 
 
