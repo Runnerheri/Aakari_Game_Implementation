@@ -197,9 +197,9 @@ public class ModelImpl implements Model {
                 return true;
             }
             if(wallinsamerow == true){
-                if(wall)
             }
         }
+        return false;
     }
 
     public Puzzle getActivePuzzle(){
