@@ -8,9 +8,10 @@ public class ModelImpl implements Model {
     private int activePuzzle = 0;
     private List<ModelObserver> observers;
 
-    private int[][] lampBoard = new int[library.getPuzzle(activePuzzle).getWidth()][library.getPuzzle(activePuzzle).getHeight()];
+    private int[][] lampBoard;
     public ModelImpl(PuzzleLibrary library){
         this.library = library;
+        lampBoard = new int[library.getPuzzle(activePuzzle).getWidth()][library.getPuzzle(activePuzzle).getHeight()];
 
     }
 
@@ -172,6 +173,7 @@ public class ModelImpl implements Model {
             throw new IndexOutOfBoundsException();
         }
         activePuzzle = index;
+        lampBoard = new int[library.getPuzzle(activePuzzle).getWidth()][library.getPuzzle(getActivePuzzleIndex()).getHeight()];
 
     }
 
