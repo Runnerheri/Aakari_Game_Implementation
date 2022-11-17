@@ -203,12 +203,12 @@ public class ModelImpl implements Model {
 
         for(int i=0; i<currentpuzzle.getWidth(); i++){
             for(int j=0; j<currentpuzzle.getHeight(); j++){
-                if(currentpuzzle.getCellType(i, j) == CellType.CLUE){
-                    if(isClueSatisfied(i,j) == false) return false;
+                if(currentpuzzle.getCellType(j, i) == CellType.CLUE){
+                    if(isClueSatisfied(j,i) == false) return false;
                 }
                 if(currentpuzzle.getCellType(i,j) == CellType.CORRIDOR){
-                    if(isLit(i,j) == false) return false;
-                    if(isLampIllegal(i,j)) return false;
+                    if(isLit(j,i) == false) return false;
+                    if(isLampIllegal(j,i)) return false;
                 }
             }
         }
