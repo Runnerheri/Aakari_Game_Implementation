@@ -79,7 +79,7 @@ public class ModelImpl implements Model {
         }
         //check if lamp exists in the same column using for loop. Then check if a wall exists
         //if a lamp exists, store its position in an index
-        for(int j=0; j<lampBoard[j].length; j++){
+        for(int j=0; j<lampBoard.length; j++){
             if(lampBoard[j][c] == 1){
                 lampInColumn = true;
                 lampcolumnposition = j;
