@@ -106,6 +106,9 @@ public class ModelImpl implements Model {
     }
 
     public boolean isLampIllegal(int r, int c){
+        //4 for loops
+        //break when needed
+        Puzzle currentpuzzle = library.getPuzzle(activePuzzle);
         Puzzle currentPuzzle = library.getPuzzle(activePuzzle);
         if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
             throw new IndexOutOfBoundsException();
@@ -113,35 +116,37 @@ public class ModelImpl implements Model {
         if(isLamp(r,c) == false || currentPuzzle.getCellType(r,c) != CellType.CORRIDOR){
             throw new IllegalArgumentException();
         }
-        //check if another lamp is in the same row, and if a wall is there
-        boolean lampinsamerow = false;
-        boolean wallinsamerow = false;
-        for(int i=0; i< currentPuzzle.getWidth(); i++){
-            if(lampBoard[r][i] ==1){
-                lampinsamerow = true;
+        //Check to the right
+        for(int i=c; i<lampBoard[r].length; i++){
+            if(lampBoard[r][i] == 1){
+                return false;
             }
-            if(currentPuzzle.getCellType(r, i) == CellType.CLUE || currentPuzzle.getCellType(r,i) == CellType.WALL){
-                wallinsamerow = true;
-            }
-        }
-        //check if another lamp exists in the same column
-
-        boolean lampinsamecolumn = false;
-        boolean wallinsamecolumn = false;
-        for(int j =0; j<currentPuzzle.getHeight(); j++ ){
-            if(lampBoard[j][c] ==1){
-                lampinsamecolumn = true;
-            }
-            if(currentPuzzle.getCellType(j, c) == CellType.CLUE || currentPuzzle.getCellType(j,c) == CellType.WALL){
-                wallinsamecolumn = true;
-            }
-        }
-
-        if(lampinsamecolumn && lampinsamerow == true){
-            if(wallinsamecolumn == false && wallinsamerow == false){
+            if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
                 return true;
             }
-            if(wallinsamerow == true){
+        }
+        for(int i=c; i>=0; i--){
+            if(lampBoard[r][i] ==1){
+                return false;
+            }
+            if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
+                return true;
+            }
+        }
+        for(int j=r; j<lampBoard.length; j++){
+            if(lampBoard[j][c] == 1){
+                return false;
+            }
+            if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
+                return true;
+            }
+        }
+        for(int j=r; j>=0; j--){
+            if(lampBoard[j][c] == 1){
+                return false;
+            }
+            if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
+                return true;
             }
         }
         return false;
