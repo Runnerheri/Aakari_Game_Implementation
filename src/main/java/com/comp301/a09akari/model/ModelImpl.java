@@ -37,14 +37,14 @@ public class ModelImpl implements Model {
     }
 
     public boolean isLit(int r, int c){
-
-        boolean isLit = false;
-        if(c<0 || c>= library.getPuzzle(activePuzzle).getWidth() || r<0 || r>=library.getPuzzle(activePuzzle).getHeight()){
+        if(r<0 || r>= library.getPuzzle(activePuzzle).getWidth() || c<0 || c>=library.getPuzzle(activePuzzle).getHeight()){
             throw new IndexOutOfBoundsException();
         }
         if(library.getPuzzle(activePuzzle).getCellType(r,c) != CellType.CORRIDOR){
             throw new IllegalArgumentException();
         }
+
+        boolean isLit = false;
         //check if the cell itself contains a lamp
         if(lampBoard[r][c] == 1){
             isLit = true;
