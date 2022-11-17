@@ -124,7 +124,7 @@ public class ModelImpl implements Model {
         //Check to the right
         for(int i=c+1; i<lampBoard[r].length; i++){
             if(lampBoard[r][i] == 1){
-                return false;
+                return true;
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
                 rowtoright = true;
@@ -132,7 +132,7 @@ public class ModelImpl implements Model {
         }
         for(int i=c-1; i>=0; i--){
             if(lampBoard[r][i] ==1){
-                return false;
+                return true;
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
                 rowtoleft = true;
@@ -140,7 +140,7 @@ public class ModelImpl implements Model {
         }
         for(int j=r+1; j<lampBoard.length; j++){
             if(lampBoard[j][c] == 1){
-                return false;
+                return true;
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
                 columnabove = true;
@@ -148,16 +148,16 @@ public class ModelImpl implements Model {
         }
         for(int j=r-1; j>=0; j--){
             if(lampBoard[j][c] == 1){
-                return false;
+                return true;
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
                 columnbelow = true;
             }
         }
-        if(rowtoright == true && rowtoright == true && columnabove == true && columnbelow == true){
-            return true;
+        if(rowtoright == true && rowtoleft == true && columnabove == true && columnbelow == true){
+            return false;
         }
-        return false;
+        return true;
     }
 
     public Puzzle getActivePuzzle(){
