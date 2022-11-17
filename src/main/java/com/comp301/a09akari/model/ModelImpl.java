@@ -8,7 +8,7 @@ public class ModelImpl implements Model {
     private int activePuzzle = 0;
     private List<ModelObserver> observers;
 
-    private int[][] lampBoard;
+    private int[][] lampBoard = new int[library.getPuzzle(activePuzzle).getWidth()][library.getPuzzle(activePuzzle).getHeight()];
     public ModelImpl(PuzzleLibrary library){
         this.library = library;
 
