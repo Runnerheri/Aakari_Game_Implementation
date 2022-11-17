@@ -42,9 +42,9 @@ public class ModelImpl implements Model {
     }
 
     public boolean isLit(int r, int c){
-        if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
-            throw new IndexOutOfBoundsException();
-        }
+       // if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
+         //   throw new IndexOutOfBoundsException();
+        //}
         if(library.getPuzzle(activePuzzle).getCellType(r,c) != CellType.CORRIDOR){
             throw new IllegalArgumentException();
         }
@@ -162,7 +162,7 @@ public class ModelImpl implements Model {
 
     public boolean isLampIllegal(int r, int c){
         Puzzle currentPuzzle = library.getPuzzle(activePuzzle);
-        if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
+        if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
             throw new IndexOutOfBoundsException();
         }
         if(lampBoard[r][c] != 1){
