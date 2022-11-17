@@ -127,8 +127,9 @@ public class ModelImpl implements Model {
                 return true;
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-                rowtoright = true;
-                break;
+                return false;
+               // rowtoright = true;
+                //break;
             }
         }
         for(int i=c-1; i>=0; i--){
@@ -136,8 +137,9 @@ public class ModelImpl implements Model {
                 return true;
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-                rowtoleft = true;
-                break;
+                return false;
+                //rowtoleft = true;
+               // break;
             }
         }
         for(int j=r+1; j<lampBoard.length; j++){
@@ -145,8 +147,9 @@ public class ModelImpl implements Model {
                 return true;
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-                columnabove = true;
-                break;
+                return false;
+                //columnabove = true;
+                //break;
             }
         }
         for(int j=r-1; j>=0; j--){
@@ -154,14 +157,17 @@ public class ModelImpl implements Model {
                 return true;
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-                columnbelow = true;
-                break;
+                return false;
+               // columnbelow = true;
+                //break;
             }
         }
-        if(rowtoright == true && rowtoleft == true && columnabove == true && columnbelow == true){
-            return false;
-        }
-        return true;
+        //if(rowtoright == true && rowtoleft == true && columnabove == true && columnbelow == true){
+         //   return false;
+    //} else {
+    //    return true;
+       // }
+        return false;
     }
 
     public Puzzle getActivePuzzle(){
