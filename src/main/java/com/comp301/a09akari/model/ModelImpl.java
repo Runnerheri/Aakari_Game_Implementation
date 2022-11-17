@@ -42,113 +42,51 @@ public class ModelImpl implements Model {
     }
 
     public boolean isLit(int r, int c){
-       // if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
-         //   throw new IndexOutOfBoundsException();
-        //}
+        if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
+            throw new IndexOutOfBoundsException();
+        }
         if(library.getPuzzle(activePuzzle).getCellType(r,c) != CellType.CORRIDOR){
             throw new IllegalArgumentException();
         }
-
-        boolean isLit = false;
-        //check if the cell itself contains a lamp
+        Puzzle currentpuzzle = library.getPuzzle(activePuzzle);
         if(lampBoard[r][c] == 1){
             return true;
         }
-
-        boolean lampInRow = false;
-        boolean lampInColumn = false;
-        boolean wallinrow = false;
-        boolean wallincolumn = false;
-        int wallrowposition = 0;
-        int wallcolumnposition =0;
-        int lamprowposition = 0;
-        int lampcolumnposition= 0;
-
-        //check if a lamp exists in the same row using for loop. Then check if a wall exists.
-        for(int i =0; i< lampBoard.length; i++){
+        //loop through same row in either direction
+        for(int i=c; i<lampBoard[r].length; i++){
             if(lampBoard[r][i] == 1){
-                lampInRow = true;
-                lamprowposition = i;
+                return true;
             }
-            //check if a wall exists in the same row
-            //if so, store its position in an index
-            if(library.getPuzzle(activePuzzle).getCellType(r,i) == CellType.WALL || library.getPuzzle(activePuzzle).getCellType(r,c) == CellType.CLUE){
-                wallinrow = true;
-                wallrowposition = i;
+            if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
+                return false;
             }
         }
-        //check if lamp exists in the same column using for loop. Then check if a wall exists
-        //if a lamp exists, store its position in an index
-        for(int j=0; j<lampBoard.length; j++){
+        for(int i=c; i>=0; i--){
+            if(lampBoard[r][i] ==1){
+                return true;
+            }
+            if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
+                return false;
+            }
+        }
+        //loop through the same column in either direction
+        for(int j=r; j<lampBoard.length; j++){
             if(lampBoard[j][c] == 1){
-                lampInColumn = true;
-                lampcolumnposition = j;
+                return true;
             }
-            //check if a wall exists in the same column
-            //if so, store its position in an index
-            if(library.getPuzzle(activePuzzle).getCellType(j,c) == CellType.WALL || library.getPuzzle(activePuzzle).getCellType(j,c) == CellType.CLUE){
-                wallincolumn = true;
-                wallcolumnposition = j;
-
+            if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
+                return false;
             }
         }
-
-        //if no lamp exists in the same row or column, just return false
-        if(lampInRow == false && lampInColumn == false){
-            isLit = false;
-        }
-
-        //if a lampInRow AND lampInColumn is true, check for walls in both the row and the column
-        if(lampInRow == true && lampInColumn == true){
-            if(wallinrow == false || wallincolumn == false){
-                isLit = true;
+        for(int j=r; j>=0; j--){
+            if(lampBoard[j][c] == 1){
+                return true;
             }
-            if(wallinrow == true){
-                if(lamprowposition < c && c < wallrowposition || wallrowposition <c && c<lamprowposition){
-                    isLit = true;
-                }
-            }
-            else if(wallincolumn == true){
-                if(lampcolumnposition < r && r < wallcolumnposition || wallcolumnposition < r && r < lampcolumnposition){
-                    isLit = true;
-                }
-
-            }
-            else{
-                isLit = false;
+            if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
+                return false;
             }
         }
-
-
-        //if lampInRow is true, check for walls
-        else if(lampInRow == true){
-            if(wallinrow == false){
-                isLit = true;
-            }
-            else{
-                if(lamprowposition < c && c < wallrowposition || wallrowposition <c && c<lamprowposition){
-                    isLit = true;
-                }
-                else{
-                    isLit = false;
-                }
-            }
-        }
-        //if lampInColumn is true, check for walls
-        if(lampInColumn == true){
-            if(wallincolumn == false){
-                isLit = true;
-            }
-            else{
-                if(lampcolumnposition < r && r < wallcolumnposition || wallcolumnposition < r && r < lampcolumnposition){
-                    isLit = true;
-                }
-                else{
-                    isLit = false;
-                }
-            }
-        }
-        return isLit;
+        return false;
     }
 
     public boolean isLamp(int r, int c){
