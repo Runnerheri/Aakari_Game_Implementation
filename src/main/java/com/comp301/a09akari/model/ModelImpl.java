@@ -1,5 +1,6 @@
 package com.comp301.a09akari.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModelImpl implements Model {
@@ -10,8 +11,12 @@ public class ModelImpl implements Model {
 
     private int[][] lampBoard;
     public ModelImpl(PuzzleLibrary library){
+        if(library == null){
+            throw new IllegalArgumentException();
+        }
         this.library = library;
         lampBoard = new int[library.getPuzzle(activePuzzle).getWidth()][library.getPuzzle(activePuzzle).getHeight()];
+        observers = new ArrayList<>();
 
     }
 
@@ -182,12 +187,12 @@ public class ModelImpl implements Model {
     }
 
     public void resetPuzzle(){
-        for(int i =0; i<lampBoard[0].length; i++){
-            for(int j=0; j<lampBoard.length; j++){
-                lampBoard[i][j] =0;
-            }
+        Puzzle activePuzzle = library.getPuzzle(getActivePuzzleIndex());
+        int width = activePuzzle.getWidth();
+        int height = activePuzzle.getHeight();
+        lampBoard = new int[height][width];
+        //notifyobservers
         }
-    }
 
     public boolean isSolved(){
         return false;
@@ -204,5 +209,9 @@ public class ModelImpl implements Model {
 
     public void removeObserver(ModelObserver observer){
         observers.remove(observer);
+    }
+
+    public void notifyObservers(){
+
     }
 }
