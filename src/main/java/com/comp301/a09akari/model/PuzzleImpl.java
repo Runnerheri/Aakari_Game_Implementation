@@ -9,10 +9,10 @@ public class PuzzleImpl implements Puzzle{
 
 
     public int getWidth(){
-        return board.length;
+        return board[0].length;
     }
     public int getHeight(){
-        return board[0].length;
+        return board.length;
     }
     public CellType getCellType(int r, int c){
         if(r> board.length || r<0 || c> board[0].length || c<0){
