@@ -109,11 +109,10 @@ public class ModelImpl implements Model {
         //4 for loops
         //break when needed
         Puzzle currentpuzzle = library.getPuzzle(activePuzzle);
-        Puzzle currentPuzzle = library.getPuzzle(activePuzzle);
         if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
             throw new IndexOutOfBoundsException();
         }
-        if(isLamp(r,c) == false || currentPuzzle.getCellType(r,c) != CellType.CORRIDOR){
+        if(isLamp(r,c) == false || currentpuzzle.getCellType(r,c) != CellType.CORRIDOR){
             throw new IllegalArgumentException();
         }
 
@@ -125,49 +124,45 @@ public class ModelImpl implements Model {
         for(int i=c+1; i<lampBoard[r].length; i++){
             if(lampBoard[r][i] == 1){
                 return true;
-           // }
-           // if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-             //   return false;
-               // rowtoright = true;
-                //break;
+            }
+            if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
+                rowtoright = true;
+                break;
             }
         }
         for(int i=c-1; i>=0; i--){
             if(lampBoard[r][i] ==1){
                 return true;
             }
-           // if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-             //   return false;
-                //rowtoleft = true;
-               // break;
-           // }
+            if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
+                rowtoleft = true;
+                break;
+           }
         }
         for(int j=r+1; j<lampBoard.length; j++){
             if(lampBoard[j][c] == 1){
                 return true;
             }
-           // if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-              //  return false;
-                //columnabove = true;
-                //break;
-          //  }
+            if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
+                columnabove = true;
+                break;
+            }
         }
         for(int j=r-1; j>=0; j--){
             if(lampBoard[j][c] == 1){
                 return true;
             }
-           // if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-             //   return false;
-               // columnbelow = true;
-                //break;
-            //}
+            if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
+                columnbelow = true;
+                break;
+            }
         }
-        //if(rowtoright == true && rowtoleft == true && columnabove == true && columnbelow == true){
-         //   return false;
-    //} else {
-    //    return true;
-       // }
-        return false;
+        if(rowtoright == true && rowtoleft == true && columnabove == true && columnbelow == true){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     public Puzzle getActivePuzzle(){
