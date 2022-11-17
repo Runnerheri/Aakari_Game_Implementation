@@ -90,6 +90,13 @@ public class ModelImpl implements Model {
     }
 
     public boolean isLamp(int r, int c){
+        Puzzle currentPuzzle = library.getPuzzle(activePuzzle);
+        if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
+            throw new IndexOutOfBoundsException();
+        }
+        if(currentPuzzle.getCellType(r,c) != CellType.CORRIDOR){
+            throw new IllegalArgumentException();
+        }
         if(lampBoard[r][c] == 1){
             return true;
         }
@@ -103,7 +110,7 @@ public class ModelImpl implements Model {
         if(r<0 || r>= library.getPuzzle(activePuzzle).getHeight() || c<0 || c>=library.getPuzzle(activePuzzle).getWidth()){
             throw new IndexOutOfBoundsException();
         }
-        if(lampBoard[r][c] != 1){
+        if(lampBoard[r][c] != 1 || currentPuzzle.getCellType(r,c) != CellType.CORRIDOR){
             throw new IllegalArgumentException();
         }
         //check if another lamp is in the same row, and if a wall is there
