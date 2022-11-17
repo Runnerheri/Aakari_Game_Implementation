@@ -15,7 +15,7 @@ public class PuzzleImpl implements Puzzle{
         return board.length;
     }
     public CellType getCellType(int r, int c){
-        if(r> board.length || r<0 || c> board[0].length || c<0){
+        if(r> board[0].length || r<0 || c> board.length || c<0){
             throw new IndexOutOfBoundsException();
         }
         if(board[r][c] == 0 || board[r][c] == 1 || board[r][c] == 2 || board[r][c] == 3 || board[r][c] == 4){
