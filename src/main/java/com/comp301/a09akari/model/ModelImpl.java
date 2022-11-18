@@ -95,7 +95,7 @@ public class ModelImpl implements Model {
         if(columnabove == false && columnbelow == false && rowtoright == false && rowtoleft == false ){
             return false;
         }
-        return true;
+        return false;
 
     }
 
