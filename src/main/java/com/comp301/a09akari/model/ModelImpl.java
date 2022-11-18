@@ -196,15 +196,15 @@ public class ModelImpl implements Model {
 
     public boolean isSolved(){
         Puzzle currentpuzzle = library.getPuzzle(activePuzzle);
-        //double for loop to loop through each cell
-        //check if cell type is clue
-            //check if clue is satisfied, it not return false
-        //check if cell is corridor
-            //check if it is not lit OR it is an illegal lamp, return false
-        //return true at end as default
+    // double for loop to loop through each cell
+    // check if cell type is clue
+    // check if clue is satisfied, it not return false
+    // check if cell is corridor
+    // check if it is not lit OR it is an illegal lamp, return false
+    // return true at end as default
 
-        for(int i=0; i<lampBoard.length; i++){
-            for (int j = 0; j < lampBoard[0].length; j++) {
+    for (int i = 0; i < currentpuzzle.getHeight(); i++) {
+      for (int j = 0; j < currentpuzzle.getWidth(); j++) {
                 if(currentpuzzle.getCellType(i, j) == CellType.CLUE){
                     if(isClueSatisfied(i,j) == false){
                         return false;
