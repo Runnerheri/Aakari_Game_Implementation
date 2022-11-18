@@ -53,13 +53,18 @@ public class ModelImpl implements Model {
         if(lampBoard[r][c] == 1){
             return true;
         }
+
+        boolean rowtoright = true;
+        boolean rowtoleft = true;
+        boolean columnbelow = true;
+        boolean columnabove = true;
         //loop through same row in either direction
         for(int i=c; i<lampBoard[r].length; i++){
             if(lampBoard[r][i] == 1){
                 return true;
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-                return false;
+                rowtoright = false;
             }
         }
         for(int i=c; i>=0; i--){
@@ -67,7 +72,7 @@ public class ModelImpl implements Model {
                 return true;
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
-                return false;
+                rowtoleft = false;
             }
         }
         //loop through the same column in either direction
@@ -76,7 +81,7 @@ public class ModelImpl implements Model {
                 return true;
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-                return false;
+                columnabove = false;
             }
         }
         for(int j=r; j>=0; j--){
@@ -84,10 +89,15 @@ public class ModelImpl implements Model {
                 return true;
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
-                return false;
+                columnbelow = false;
             }
         }
-        return false;
+        if(columnabove == false && columnbelow == false && rowtoright == false && rowtoleft == false ){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     public boolean isLamp(int r, int c){
@@ -207,21 +217,24 @@ public class ModelImpl implements Model {
       for (int j = 0; j < currentpuzzle.getWidth(); j++) {
                 if(currentpuzzle.getCellType(i, j) == CellType.CLUE){
                     if(isClueSatisfied(i,j) == false){
+                        System.out.print("clue not satisfied" +i + j);
                         return false;
                     }
                 }
                 if(currentpuzzle.getCellType(i,j) == CellType.CORRIDOR){
-                    if(isLit(i, j) == false || isLamp(i,j) && isLampIllegal(i,j)) {
+                    if(isLit(i, j) == false) {
+                        System.out.print("Cell not lit at index" + i + j);
                         return false;
                     }
-                   /*
+
                     if(isLamp(i, j)) {
                         if(isLampIllegal(i, j)){
+                            System.out.print("illegal lamp" +i + j);
                             return false;
                         }
                     }
 
-                    */
+
                 }
 
 

@@ -4,9 +4,16 @@ public class Main {
 
     public static void main(String[] args){
         int[][] PUZZLE_01 = {
-                {1, 6, 5},
-                {5, 6, 6},
-                {6, 5, 1}
+                {6, 6, 2, 6, 6, 2, 6, 6},
+                {6, 3, 6, 6, 6, 6, 6, 6},
+                {6, 6, 5, 5, 6, 3, 6, 0},
+                {6, 6, 6, 6, 6, 6, 5, 6},
+                {6, 5, 6, 6, 6, 6, 6, 6},
+                {2, 6, 3, 6, 5, 5, 6, 6},
+                {6, 6, 6, 6, 6, 6, 3, 6},
+                {6, 6, 5, 6, 6, 2, 6, 6}
+
+
 
 
         };
@@ -18,11 +25,24 @@ public class Main {
         library.addPuzzle(Bob);
 
         Model model = new ModelImpl(library);
-        model.addLamp(2,0);
         model.addLamp(0,1);
-        model.addLamp(1,2);
-        //model.addLamp(2,3);
-       // model.addLamp(3,6);
+        model.addLamp(0,3);
+        model.addLamp(0,6);
+        model.addLamp(1,0);
+        model.addLamp(1,5);
+
+        model.addLamp(2,1);
+        model.addLamp(2,4);
+        model.addLamp(3,5);
+        model.addLamp(4,2);
+        model.addLamp(5,1);
+
+        model.addLamp(5,3);
+        model.addLamp(5,6);
+        model.addLamp(6,0);
+        model.addLamp(6,7);
+        model.addLamp(7,4);
+        model.addLamp(7,6);
 
         System.out.println(model.isSolved());
 
