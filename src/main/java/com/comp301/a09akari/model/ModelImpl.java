@@ -28,7 +28,7 @@ public class ModelImpl implements Model {
             throw new IllegalArgumentException();
         }
         lampBoard[r][c] = 1;
-
+        notifyObservers();
     }
 
     public void removeLamp(int r, int c){
@@ -39,6 +39,7 @@ public class ModelImpl implements Model {
             throw new IllegalArgumentException();
         }
         lampBoard[r][c] = 0;
+        notifyObservers();
     }
 
     public boolean isLit(int r, int c){
@@ -177,6 +178,7 @@ public class ModelImpl implements Model {
         }
         activePuzzle = index;
         lampBoard = new int[library.getPuzzle(index).getHeight()][library.getPuzzle(index).getWidth()];
+        notifyObservers();
 
     }
 
@@ -189,7 +191,7 @@ public class ModelImpl implements Model {
         int width = activePuzzle.getWidth();
         int height = activePuzzle.getHeight();
         lampBoard = new int[height][width];
-        //notifyobservers
+        notifyObservers();
         }
 
     public boolean isSolved(){
@@ -204,12 +206,18 @@ public class ModelImpl implements Model {
         for(int i=0; i<lampBoard.length; i++){
             for (int j = 0; j < lampBoard[0].length; j++) {
                 if(currentpuzzle.getCellType(i, j) == CellType.CLUE){
-                    if(isClueSatisfied(i,j) == false) return false;
+                    if(isClueSatisfied(i,j) == false){
+                        return false;
+                    }
                 }
                 if(currentpuzzle.getCellType(i,j) == CellType.CORRIDOR){
-                    if(isLit(i,j) == false) return false;
+                    if(isLit(i, j) == false) {
+                        return false;
+                    }
                     if(isLamp(i, j)) {
-                        if(isLampIllegal(i, j)) return false;
+                        if(isLampIllegal(i, j)){
+                            return false;
+                        }
                     }
                 }
             }
@@ -275,6 +283,8 @@ public class ModelImpl implements Model {
     }
 
     public void notifyObservers(){
-
+        for(ModelObserver o: observers){
+            o.update(this);
+        }
     }
 }
