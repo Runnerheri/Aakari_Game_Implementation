@@ -95,9 +95,8 @@ public class ModelImpl implements Model {
         if(columnabove == false && columnbelow == false && rowtoright == false && rowtoleft == false ){
             return false;
         }
-        else{
-            return true;
-        }
+        return false;
+
     }
 
     public boolean isLamp(int r, int c){
