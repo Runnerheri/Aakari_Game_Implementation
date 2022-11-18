@@ -32,7 +32,7 @@ public class PuzzleImpl implements Puzzle{
     }
 
     public int getClue(int r, int c){
-        if(r> board[0].length || r<0 || c> board.length || c<0){
+        if(r>= getHeight()|| r<0 || c>= getWidth() || c<0){
             throw new IndexOutOfBoundsException();
         }
 
