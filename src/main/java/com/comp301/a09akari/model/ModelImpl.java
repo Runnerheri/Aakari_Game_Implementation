@@ -211,15 +211,20 @@ public class ModelImpl implements Model {
                     }
                 }
                 if(currentpuzzle.getCellType(i,j) == CellType.CORRIDOR){
-                    if(isLit(i, j) == false) {
+                    if(isLit(i, j) == false || isLamp(i,j) && isLampIllegal(i,j)) {
                         return false;
                     }
+                   /*
                     if(isLamp(i, j)) {
                         if(isLampIllegal(i, j)){
                             return false;
                         }
                     }
+
+                    */
                 }
+
+
             }
         }
         return true;
