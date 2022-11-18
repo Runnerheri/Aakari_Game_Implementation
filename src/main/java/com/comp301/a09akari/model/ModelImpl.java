@@ -65,6 +65,7 @@ public class ModelImpl implements Model {
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
                 rowtoright = false;
+                break;
             }
         }
         for(int i=c; i>=0; i--){
@@ -73,6 +74,7 @@ public class ModelImpl implements Model {
             }
             if(currentpuzzle.getCellType(r, i) == CellType.CLUE || currentpuzzle.getCellType(r,i) == CellType.WALL){
                 rowtoleft = false;
+                break;
             }
         }
         //loop through the same column in either direction
@@ -82,6 +84,7 @@ public class ModelImpl implements Model {
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
                 columnabove = false;
+                break;
             }
         }
         for(int j=r; j>=0; j--){
@@ -90,6 +93,7 @@ public class ModelImpl implements Model {
             }
             if(currentpuzzle.getCellType(j, c) == CellType.CLUE || currentpuzzle.getCellType(j,c) == CellType.WALL){
                 columnbelow = false;
+                break;
             }
         }
         if(columnabove == false && columnbelow == false && rowtoright == false && rowtoleft == false ){
