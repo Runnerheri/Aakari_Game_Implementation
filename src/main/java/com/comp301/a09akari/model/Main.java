@@ -19,7 +19,6 @@ public class Main {
         };
 
 
-
         PuzzleLibrary library = new PuzzleLibraryImpl();
         Puzzle Bob = new PuzzleImpl(PUZZLE_01);
         library.addPuzzle(Bob);
@@ -47,5 +46,14 @@ public class Main {
         System.out.println(model.isSolved());
 
 
+        for(int i=0; i< Bob.getHeight(); i++){
+            for(int j=0; j<Bob.getWidth(); j++){
+                if(Bob.getCellType(i,j) == CellType.CORRIDOR){
+                    System.out.println("Index i, j isLit =" + model.isLit(i,j));
+                }
+            }
+        }
     }
+
+
 }
