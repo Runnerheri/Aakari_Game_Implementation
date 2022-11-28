@@ -1,5 +1,6 @@
 package com.comp301.a09akari.controller;
 
+import com.comp301.a09akari.model.Model;
 import com.comp301.a09akari.model.Puzzle;
 
 public interface AlternateMvcController {
@@ -32,4 +33,6 @@ public interface AlternateMvcController {
 
   /** Getter method for the active puzzle */
   Puzzle getActivePuzzle();
+
+  public Model getModel();
 }

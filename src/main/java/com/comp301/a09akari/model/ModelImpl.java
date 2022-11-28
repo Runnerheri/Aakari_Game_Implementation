@@ -316,7 +316,7 @@ public class ModelImpl implements Model {
     observers.remove(observer);
   }
 
-  public void notifyObservers() {
+  private void notifyObservers() {
     for (ModelObserver o : observers) {
       o.update(this);
     }
