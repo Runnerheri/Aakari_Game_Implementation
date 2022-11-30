@@ -76,6 +76,4 @@ public interface Model {
 
   /** Removes an observer from the model */
   void removeObserver(ModelObserver observer);
-
-
 }

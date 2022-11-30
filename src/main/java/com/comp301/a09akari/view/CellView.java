@@ -29,7 +29,6 @@ public class CellView {
     if (controller.getActivePuzzle().getClue(i, j) == 0) {
       Label label = new Label("0");
       pane.getChildren().add(label);
-
     }
     if (controller.getActivePuzzle().getClue(i, j) == 1) {
       Label label = new Label("1");
@@ -55,9 +54,5 @@ public class CellView {
     }
 
     return pane;
-
-
   }
-
-
 }
