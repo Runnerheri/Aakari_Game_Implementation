@@ -17,6 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.9</maven.compiler.source>
     <maven.compiler.target>1.9</maven.compiler.target>
+
   </properties>
 
   <dependencies>
@@ -85,6 +86,7 @@
         <configuration>
           <mainClass>com.comp301.a09akari.Main</mainClass>
         </configuration>
+
       </plugin>
 
       <!-- Outputs a runnable jar file so students can show off their project :) -->

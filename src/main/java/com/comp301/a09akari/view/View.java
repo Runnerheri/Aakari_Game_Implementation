@@ -9,41 +9,36 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
 public class View implements ModelObserver {
 
-    private AlternateMvcController controller;
-    private Stage stage;
+  private AlternateMvcController controller;
+  private Stage stage;
 
-    public View(AlternateMvcController controller, Stage stage){
-        this.controller = controller;
-        this.stage = stage;
-    }
+  public View(AlternateMvcController controller, Stage stage) {
+    this.controller = controller;
+    this.stage = stage;
+  }
 
-    public Parent render(){
-        VBox layout = new VBox();
+  public Parent render() {
+    VBox layout = new VBox();
 
-        GameView game_view = new GameView(controller);
-        ResetView reset_view = new ResetView(controller);
-        PuzzleIndexView index_view = new PuzzleIndexView(controller);
+    GameView game_view = new GameView(controller);
+    ResetView reset_view = new ResetView(controller);
+    PuzzleIndexView index_view = new PuzzleIndexView(controller);
 
-        layout.getChildren().add(index_view.render());
-        layout.getChildren().add(game_view.render());
-        layout.getChildren().add(reset_view.render());
+    layout.getChildren().add(index_view.render());
+    layout.getChildren().add(game_view.render());
+    layout.getChildren().add(reset_view.render());
 
-        return layout;
+    return layout;
+  }
 
-    }
+  public void update(Model model) {
+    Scene scene = new Scene(render());
 
+    scene.getStylesheets().add("main.css");
 
-    public void update(Model model) {
-        Scene scene = new Scene(render());
-
-        scene.getStylesheets().add("main.css");
-
-        stage.setScene(scene);
-        stage.sizeToScene();
-
-    }
+    stage.setScene(scene);
+    stage.sizeToScene();
+  }
 }
-
